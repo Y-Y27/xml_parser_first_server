@@ -14,7 +14,7 @@
    The xml parser is written in two implementations: 1 - using JAXB, 2 - using pure w3c.dom
  
  #### There are the following pages in the system:
-| Page               | URL               | Description                      | Available actions (depending of the role)                  
+| Page               | URL               | Description                      | Available actions          
 | --------           |-------------      | -------------                    | -------------    
 | `Main page`        | */*               | Page for uploading ZIP archive   | Upload zip archive
  
