@@ -9,3 +9,15 @@ server must find in these files pairs of Docs.Doc.DocGUID (Report.xml) and Docs.
    Server 1 must send all extracted data to server 2 with a REST request
    Server must only accept Report.xml/PayDocs.xml pairs, which have the word "Total" in Report_type_flag tag of Report.xml file;
    The xml parser is written in two implementations: 1 - using JAXB, 2 - using pure w3c.dom
+ 
+ #### There are the following pages in the system:
+| Page               | URL               | Description                      | Available actions (depending of the role)                  
+| --------           |-------------      | -------------                    | -------------    
+| `Main page`        | */*               | Page for uploading ZIP archive   | Upload zip archive
+ 
+ 
+Tech stack:
+- Spring Boot
+- JAXB
+- org.w3c.dom
+- Lombok
