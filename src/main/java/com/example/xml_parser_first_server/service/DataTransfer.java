@@ -29,10 +29,8 @@ public class DataTransfer {
         }
 
         if (reportDoc.getReport_type_flag().equalsIgnoreCase("Итоговая")) {
-
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.postForEntity("http://localhost:8085/getData", dataToTransfer, DataToTransfer.class);
-
         }
         return dataToTransfer;
     }

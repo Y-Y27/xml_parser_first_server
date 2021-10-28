@@ -111,25 +111,25 @@ public class DomParser {
                 String purpose = element.getElementsByTagName("Purpose").item(0).getTextContent();
                 payDocDoc.setPurpose(purpose);
 
-                String GUID1 = element.getElementsByTagName("GUID").item(0).getTextContent();
-                payDocDoc.setGUID(GUID1);
+                String GUID = element.getElementsByTagName("GUID").item(0).getTextContent();
+                payDocDoc.setGUID(GUID);
 
                 NodeList infPayNodeList = currentDocument.getElementsByTagName("Inf_PAY");
-                List<PayDoc.Doc.InfPay> infPaysDocList = getInnKppCnameInfPay(infPayNodeList, currentNumberOfDoc);
+                PayDoc.Doc.InfPay infPay = getInnKppCnameInfPay(infPayNodeList, currentNumberOfDoc);
 
                 NodeList infRcpNodeList = currentDocument.getElementsByTagName("Inf_RCP");
-                List<PayDoc.Doc.InfRcp> infRcpDocList = getInnKppCnameInfRcp(infRcpNodeList, currentNumberOfDoc);
+                PayDoc.Doc.InfRcp infRcp = getInnKppCnameInfRcp(infRcpNodeList, currentNumberOfDoc);
 
                 NodeList bank_payNodeList = currentDocument.getElementsByTagName("Bank_PAY");
-                List<PayDoc.Doc.BankPay> bankPayDocList = getBspayBicpayAndBsKsPayBankPay(bank_payNodeList, currentNumberOfDoc);
+                PayDoc.Doc.BankPay bankPay = getBspayBicpayAndBsKsPayBankPay(bank_payNodeList, currentNumberOfDoc);
 
                 NodeList bank_rcpNodeList = currentDocument.getElementsByTagName("Bank_RCP");
-                List<PayDoc.Doc.BankRCP> bankRcpDocList = getBspayBicpayAndBsKsPayBankRCP(bank_rcpNodeList, currentNumberOfDoc);
+                PayDoc.Doc.BankRCP bankRcp = getBspayBicpayAndBsKsPayBankRCP(bank_rcpNodeList, currentNumberOfDoc);
 
-                payDocDoc.setInfPayList(infPaysDocList);
-                payDocDoc.setInfRcpList(infRcpDocList);
-                payDocDoc.setBankPayList(bankPayDocList);
-                payDocDoc.setBankRCPList(bankRcpDocList);
+                payDocDoc.setInfPay(infPay);
+                payDocDoc.setInfRcp(infRcp);
+                payDocDoc.setBankPay(bankPay);
+                payDocDoc.setBankRCP(bankRcp);
                 innerDocList.add(payDocDoc);
             }
         }
@@ -138,8 +138,7 @@ public class DomParser {
         return payDoc;
     }
 
-    public List<PayDoc.Doc.InfPay> getInnKppCnameInfPay(NodeList nodeList, int currentNumberOfDoc) {
-        List<PayDoc.Doc.InfPay> paydocInfPay = new ArrayList<>();
+    public PayDoc.Doc.InfPay getInnKppCnameInfPay(NodeList nodeList, int currentNumberOfDoc) {
 
         PayDoc.Doc paydocDoc = new PayDoc.Doc();
         PayDoc.Doc.InfPay infPay = new PayDoc.Doc.InfPay();
@@ -157,14 +156,13 @@ public class DomParser {
             infPay.setINN_PAY(INN_PAY);
             infPay.setKPP_PAY(KPP_PAY);
             infPay.setCName_PAY(CName_PAY);
-            paydocInfPay.add(infPay);
         }
-        paydocDoc.setInfPayList(paydocInfPay);
-        return paydocInfPay;
+        paydocDoc.setInfPay(infPay);
+        return infPay;
     }
 
-    public List<PayDoc.Doc.InfRcp> getInnKppCnameInfRcp(NodeList nodeList, int currentNumberOfDoc) {
-        List<PayDoc.Doc.InfRcp> paydocInfRcp = new ArrayList<>();
+    public PayDoc.Doc.InfRcp getInnKppCnameInfRcp(NodeList nodeList, int currentNumberOfDoc) {
+
         PayDoc.Doc paydocDoc = new PayDoc.Doc();
         PayDoc.Doc.InfRcp infRcp = new PayDoc.Doc.InfRcp();
 
@@ -179,14 +177,12 @@ public class DomParser {
             infRcp.setINN_PAY(INN_PAY);
             infRcp.setKPP_PAY(KPP_PAY);
             infRcp.setCName_PAY(CName_PAY);
-            paydocInfRcp.add(infRcp);
         }
-        paydocDoc.setInfRcpList(paydocInfRcp);
-        return paydocInfRcp;
+        paydocDoc.setInfRcp(infRcp);
+        return infRcp;
     }
 
-    public List<PayDoc.Doc.BankPay> getBspayBicpayAndBsKsPayBankPay(NodeList nodeList, int currentNumberOfDoc) {
-        List<PayDoc.Doc.BankPay> paydocBankPay = new ArrayList<>();
+    public PayDoc.Doc.BankPay getBspayBicpayAndBsKsPayBankPay(NodeList nodeList, int currentNumberOfDoc) {
 
         PayDoc.Doc paydocDoc = new PayDoc.Doc();
         PayDoc.Doc.BankPay bankPay = new PayDoc.Doc.BankPay();
@@ -203,15 +199,13 @@ public class DomParser {
             bankPay.setBS_PAY(BS_PAY);
             bankPay.setBIC_PAY(BIC_PAY);
             bankPay.setBS_KS_PAY(BS_KS_PAY);
-            paydocBankPay.add(bankPay);
         }
 
-        paydocDoc.setBankPayList(paydocBankPay);
-        return paydocBankPay;
+        paydocDoc.setBankPay(bankPay);
+        return bankPay;
     }
 
-    public List<PayDoc.Doc.BankRCP> getBspayBicpayAndBsKsPayBankRCP(NodeList nodeList, int currentNumberOfDoc) {
-        List<PayDoc.Doc.BankRCP> paydocBankRCP = new ArrayList<>();
+    public PayDoc.Doc.BankRCP getBspayBicpayAndBsKsPayBankRCP(NodeList nodeList, int currentNumberOfDoc) {
 
         PayDoc.Doc paydocDoc = new PayDoc.Doc();
         PayDoc.Doc.BankRCP bankRCP = new PayDoc.Doc.BankRCP();
@@ -228,10 +222,8 @@ public class DomParser {
             bankRCP.setBS_PAY(BS_PAY);
             bankRCP.setBIC_PAY(BIC_PAY);
             bankRCP.setBS_KS_PAY(BS_KS_PAY);
-            paydocBankRCP.add(bankRCP);
-
         }
-        paydocDoc.setBankRCPList(paydocBankRCP);
-        return paydocBankRCP;
+        paydocDoc.setBankRCP(bankRCP);
+        return bankRCP;
     }
 }

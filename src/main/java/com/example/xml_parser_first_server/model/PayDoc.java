@@ -25,16 +25,16 @@ public class PayDoc {
         private String GUID;
 
         @XmlElement(name = "Inf_PAY")
-        private List<InfPay> infPayList;
+        private InfPay infPay;
 
         @XmlElement(name = "Bank_PAY")
-        private List<BankPay> bankPayList;
+        private BankPay bankPay;
 
         @XmlElement(name = "Inf_RCP")
-        private List<InfRcp> infRcpList;
+        private InfRcp infRcp;
 
         @XmlElement(name = "Bank_RCP")
-        private List<BankRCP> bankRCPList;
+        private BankRCP bankRCP;
 
         @XmlElement(name = "Purpose")
         private String Purpose;
